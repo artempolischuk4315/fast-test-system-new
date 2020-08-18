@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <a href="?lang=en">Eng</a>
+    <a href="?lang=ua">Укр</a>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-default" style="margin-top:45px">
+                <div class="panel-heading">
+                    <h3 class="panel-title" th:text="#{title.registration}"></h3>
+                </div>
+
+                <p th:if="${bindingError}" th:text="#{error.binding}"  class="alert alert-info" role="alert"></p>
+                <p th:if="${confirmPasswordError}" th:text="#{error.confirm-password}"  class="alert alert-info" role="alert"></p>
+                <p th:if="${userAlreadyRegisteredError}" th:text="#{ error.user-already-registered}"  class="alert alert-info" role="alert"></p>
+
+                <form th:action = "@{/registration}" method="post">
+                    <div class="form-group">
+                        <label for="email" th:text="#{label.email}"></label>
+                        <input type="email" class="form-control" id="email" placeholder=" "
+                               pattern = "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 4}$"
+                               required
+                               name="email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" th:text="#{label.password}"></label>
+                        <input type="password" class="form-control" id="password" placeholder="****"
+                               required
+                               name="password">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword" th:text="#{label.confirm-password}"></label>
+                        <input type="password" class="form-control" id="confirmPassword" placeholder="****"
+                               required
+                               name="confirmPassword">
+                    </div>
+                    <button type="submit" class="btn btn-default" th:text="#{button.registration}"onclick="this.disabled=true;this.value='Submitting...'; this.form.submit();"></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
